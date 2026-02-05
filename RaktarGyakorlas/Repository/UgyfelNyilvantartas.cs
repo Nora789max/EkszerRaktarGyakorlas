@@ -18,7 +18,7 @@ namespace RaktarGyakorlas.Repository
         }
         public void Seeder()
         {
-            var sorok = File.ReadAllLines(@"D:\go_project\Python\óraigyakorlás\0202\Data\ugyfelek.csv");
+            var sorok = File.ReadAllLines(@"D:\go_project\Python\óraigyakorlás\0202\RaktarGyakorlas\Data\ugyfelek.csv");
             foreach (var sor in sorok)
             {
                ugyfelLista.Add(new Ugyfel(sor));

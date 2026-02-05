@@ -21,6 +21,14 @@ namespace RaktarGyakorlas.Modell
             Phone = values[3];
             Position = values[4];
         }
+        public Dolgozo(int id, string name, string email, string phone, string position)
+        {
+            Id = id;
+            Name = name;
+            Email = email;
+            Phone = phone;
+            Position = position;
+        }
         public Dolgozo(string name, string email, string phone, string position)
         {
             Name = name;

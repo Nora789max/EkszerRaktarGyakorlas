@@ -9,6 +9,7 @@ namespace RaktarGyakorlas
     {
         static AruNyilvantartas Ekszerek;
         static UgyfelNyilvantartas Ugyfelek;
+        static DolgozoNyilvantartas Dolgozok;
         static void Main(string[] args)
         {
             Ekszerek = new AruNyilvantartas();
@@ -80,6 +81,7 @@ namespace RaktarGyakorlas
                             }
 
                         } while (key != ConsoleKey.Escape);
+                        break;
                     case ConsoleKey.D2:
                         do
                         {
@@ -133,6 +135,7 @@ namespace RaktarGyakorlas
                             }
 
                         } while (key != ConsoleKey.Escape);
+                        break;
                     case ConsoleKey.D3:
                         do
                         {
@@ -154,27 +157,27 @@ namespace RaktarGyakorlas
                             switch (key)
                             {
                                 case ConsoleKey.D1:
-                                    UjAru();
+                                    UjDolgozo();
                                     break;
 
                                 case ConsoleKey.D2:
-                                    OsszesAru();
+                                    OsszesDolgozo();
                                     break;
 
                                 case ConsoleKey.D3:
-                                    KeresesId();
+                                    KeresDolgozoId();
                                     break;
 
                                 case ConsoleKey.D4:
-                                    KeresesTitle();
+                                    KeresDolgozoNev();
                                     break;
 
                                 case ConsoleKey.D5:
-                                    Modositas();
+                                    ModositasDolgozo();
                                     break;
 
                                 case ConsoleKey.D6:
-                                    Torles();
+                                    TorlesDolgozo();
                                     break;
                             }
 
@@ -186,6 +189,7 @@ namespace RaktarGyakorlas
                             }
 
                         } while (key != ConsoleKey.Escape);
+                        break;
                 }
 
                 static void UjAru()
@@ -375,33 +379,36 @@ namespace RaktarGyakorlas
 
                 static void UjDolgozo()
                 {
-                    Console.Write("Megnevezés: ");
-                    string title = Console.ReadLine();
+                    Console.Write("Név: ");
+                    string name = Console.ReadLine();
 
-                    Console.Write("Leírás: ");
-                    string description = Console.ReadLine();
+                    Console.Write("Email: ");
+                    string email = Console.ReadLine();
 
-                    Console.Write("Ár: ");
-                    decimal price = decimal.Parse(Console.ReadLine());
+                    Console.Write("Phone: ");
+                    string phone = Console.ReadLine();
 
-                    Ekszerek.UjaruFelvesz(title, description, price);
-                    Console.WriteLine("✔ Áru felvéve");
+                    Console.Write("Pozíció: ");
+                    string position = Console.ReadLine();
+
+                    Dolgozok.UjDolgozoFelvesz(name, email, phone, position);
+                    Console.WriteLine("✔ Dolgozó felvéve");
                 }
 
                 static void OsszesDolgozo()
                 {
-                    List<Aru> lista = new List<Aru>();
-                    lista = Ekszerek.OsszesAruLekerdez();
+                    List<Dolgozo> lista = new List<Dolgozo>();
+                    lista = Dolgozok.OsszesDolgozoLekerdez();
 
                     if (!lista.Any())
                     {
-                        Console.WriteLine("Nincs rögzített áru.");
+                        Console.WriteLine("Nincs rögzített dolgozó.");
                         return;
                     }
 
-                    foreach (var aru in lista)
+                    foreach (var dolgozo in lista)
                     {
-                        Console.WriteLine(aru);
+                        Console.WriteLine(dolgozo);
                     }
                 }
 
@@ -409,30 +416,30 @@ namespace RaktarGyakorlas
                 {
                     Console.Write("ID: ");
                     int id = int.Parse(Console.ReadLine());
-                    Aru aru = null;
-                    aru = Ekszerek.AruLekerdezIdAlapjan(id);
-                    if (aru == null)
+                    Dolgozo dolgozo = null;
+                    dolgozo = Dolgozok.DolgozoLekerdezIdAlapjan(id);
+                    if (dolgozo == null)
                     {
-                        Console.WriteLine("Nincs ilyen áru.");
+                        Console.WriteLine("Nincs ilyen dolgozó.");
                         return;
                     }
 
-                    Console.WriteLine(aru);
+                    Console.WriteLine(dolgozo);
                 }
 
                 static void KeresDolgozoNev()
                 {
                     Console.Write("Név részlet: ");
-                    string title = Console.ReadLine();
-                    Aru aru = null;
-                    aru = Ekszerek.AruLekerdezTitleAlapjan(title);
-                    if (aru == null)
+                    string name = Console.ReadLine();
+                    Dolgozo dolgozo = null;
+                    dolgozo = Dolgozok.DolgozoLekerdezNameAlapjan(name);
+                    if (dolgozo == null)
                     {
                         Console.WriteLine("Nincs találat.");
                         return;
                     }
 
-                    Console.WriteLine(aru);
+                    Console.WriteLine(dolgozo);
                 }
 
                 static void ModositasDolgozo()
@@ -440,17 +447,21 @@ namespace RaktarGyakorlas
                     Console.Write("Módosítandó ID: ");
                     int id = int.Parse(Console.ReadLine());
 
-                    Console.Write("Új megnevezés: ");
-                    string title = Console.ReadLine();
+                    Console.Write("Új név: ");
+                    string name = Console.ReadLine();
 
-                    Console.Write("Új leírás: ");
-                    string description = Console.ReadLine();
+                    Console.Write("Új email: ");
+                    string email = Console.ReadLine();
 
-                    Console.Write("Új ár: ");
-                    decimal price = decimal.Parse(Console.ReadLine());
+                    Console.Write("Új telefon: ");
+                    string phone = Console.ReadLine();
+
+                    Console.Write("Új pzíció: ");
+                    string position = Console.ReadLine();
+
                     bool siker = false;
-                    siker = Ekszerek.AruModositasaIdAlapjan(id, title, description, price);
-                    Console.WriteLine(siker ? "✔ Sikeres módosítás" : "✖ Nincs ilyen áru");
+                    siker = Dolgozok.DolgozoModositasaIdAlapjan(id, name, email, phone, position);
+                    Console.WriteLine(siker ? "✔ Sikeres módosítás" : "✖ Nincs ilyen dolgozó");
                 }
 
                 static void TorlesDolgozo()
@@ -458,9 +469,11 @@ namespace RaktarGyakorlas
                     Console.Write("Törlendő ID: ");
                     int id = int.Parse(Console.ReadLine());
                     bool siker = false;
-                    siker = Ekszerek.AruTorleseIdAlapjan(id);
-                    Console.WriteLine(siker ? "✔ Áru törölve" : "✘ Nincs ilyen áru");
+                    siker = Dolgozok.DolgozoTorleseIdAlapjan(id);
+                    Console.WriteLine(siker ? "✔ Dolgozó törölve" : "✘ Nincs ilyen dolgozó");
                 }
             }
+            while(true);
         }
+    }
 }
