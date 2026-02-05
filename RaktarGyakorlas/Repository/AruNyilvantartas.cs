@@ -18,7 +18,7 @@ namespace RaktarGyakorlas.Repository
         }
         public void Seeder()
         {
-            var sorok = File.ReadAllLines(@"D:\go_project\Python\óraigyakorlás\02.02.Hazi\EkszerRaktarGyak\Data");
+            var sorok = File.ReadAllLines(@"D:\go_project\Python\óraigyakorlás\0202\RaktarGyakorlas\Data");
             foreach (var sor in sorok)
             {
                 aruLista.Add(new Aru(sor));

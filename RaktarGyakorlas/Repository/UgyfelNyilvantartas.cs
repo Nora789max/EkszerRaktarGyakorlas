@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
 
 namespace RaktarGyakorlas.Repository
 {
@@ -19,7 +18,7 @@ namespace RaktarGyakorlas.Repository
         }
         public void Seeder()
         {
-            var sorok = File.ReadAllLines(@"C:\Data\ugyfelek.csv");
+            var sorok = File.ReadAllLines(@"D:\go_project\Python\óraigyakorlás\0202\Data\ugyfelek.csv");
             foreach (var sor in sorok)
             {
                ugyfelLista.Add(new Ugyfel(sor));
@@ -46,7 +45,7 @@ namespace RaktarGyakorlas.Repository
         }
         public Ugyfel? UgyfelLekerdezNameAlapjan(string name)
         {
-            return ugyfelLista.FirstOrDefault(x => x.Title.Contains(name));
+            return ugyfelLista.FirstOrDefault(x => x.Name.Contains(name));
         }
         public bool UgyfelTorleseIdAlapjan(int id)
         {

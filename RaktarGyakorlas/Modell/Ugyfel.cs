@@ -20,9 +20,18 @@ namespace RaktarGyakorlas.Modell
             Phone = values[3];
             Address = values[4];
         }
-
-        public Ugyfel(string name, string email, string phone, string address) : this(name)
+        public Ugyfel(int id, string name, string email, string phone, string address)
         {
+            Id = id;
+            Name = name;
+            Email = email;
+            Phone = phone;
+            Address = address;
+        }
+        public Ugyfel(string name, string email, string phone, string address)
+
+        {
+            Name = name;
             Email = email;
             Phone = phone;
             Address = address;
